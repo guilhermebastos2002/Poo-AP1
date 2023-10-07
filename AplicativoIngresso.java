@@ -4,17 +4,17 @@ public class AplicativoIngresso {
     public static void main(String[] args) {
         boolean continua = true;
         Scanner scanner = new Scanner(System.in);
-        Evento[] eventosDisponiveis = new Evento[10];
+        Evento[] eventosDisponiveis = new Evento[3];
         eventosDisponiveis[0] = new Jogo ("Flamengo e Palmeiras", "01/01/2023", "Local A", 100, 50, 50.0, "Futebol", "Flamengo", "Palmeiras", 2);
         eventosDisponiveis[1] = new Show ("Show Coldplay", "10/01/2023", "Local B", 500, 250, 1000.0, "Coldplay", "Rock Alternativo");
-        eventosDisponiveis[2] = new Exposicao("BGS", );
+        eventosDisponiveis[2] = new Exposicao ("BGS", "12/10/2023", "Local C", 500, 250, 100.0, "13 anos", "5 dias,", false);
        
 
 
 
         // Exemplo de interação com o usuário
         while (continua) {
-            System.out.println("Qual evento você está interessado :");
+            System.out.println("Qual evento você está interessado?");
             // Exiba a lista de eventos disponíveis para compra
             System.out.println("Lista de eventos disponíveis para compra:");
 for (int i = 0; i < eventosDisponiveis.length; i++) {
@@ -37,7 +37,7 @@ for (int i = 0; i < eventosDisponiveis.length; i++) {
 
             Evento eventoEscolhido = getEvento(numeroEvento);
             
-            System.out.print("Digite a quantidade de ingressos desejados" );
+            System.out.print("Digite a quantidade de ingressos desejados: " );
             int quantidadeIngressos = scanner.nextInt();
             // quantidade e valida
             if (quantidadeIngressos > 0) {

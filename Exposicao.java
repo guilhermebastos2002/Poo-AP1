@@ -3,7 +3,7 @@ public class Exposicao extends Evento{
     private String duracao;
     private boolean descontoSocial;
 
-    public Exposicao(String nome, String data, String local, int ingressosInteira, int ingressosMeia, double precoCheio){
+    public Exposicao(String nome, String data, String local, int ingressosInteira, int ingressosMeia, double precoCheio, String faixaEtaria, String duracao, boolean descontoSocial){
         super(nome, data, local, ingressosInteira, ingressosMeia, precoCheio);
         this.faixaEtaria = faixaEtaria;
         this.duracao = duracao;
@@ -42,4 +42,5 @@ public class Exposicao extends Evento{
             return false; 
         }
     }
+
 }
