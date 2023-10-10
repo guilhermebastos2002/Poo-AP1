@@ -1,27 +1,50 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class AplicativoIngresso {
+    private static Evento eventoEscolhido;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //  interação com o usuário
+        SistemaCadastroEventos sistema = new SistemaCadastroEventos();
+
+        Evento evento1 = new Show("Show", "2023-10-10", "Maracanã", 500, 250, 0, "Marshmello", "Eletrônica");
+        Evento evento2 = new Jogo("Jogo", "2023-10-22", "Maracanã", "80", "50", "100", "Futebol", "Flamengo", "Vasco", "42.50");
+
+        sistema.cadastrarEvento(evento1);
+        sistema.cadastrarEvento(evento2);
+
         while (true) {
-            System.out.println("Qual evento você está interessado :");
-            // Exiba a lista de eventos disponíveis para compra
-            String[] opcoesDisponiveis = {"Opção 1", "Opção 2", "Opção 3"};
-//criar um cadastre o evento 
-// evento foi cadastrado ? se sim continue para o evento
+            System.out.println("Qual evento você está interessado:");
+            List<Evento> eventosDisponiveis = sistema.listarEventos();
+
             // Exibe as opções disponíveis para o usuário
-            System.out.println("Opções disponíveis:");
-            for (int i = 0; i < opcoesDisponiveis.length; i++) {
-                System.out.println((i + 1) + ". " + opcoesDisponiveis[i]);
+            for (int i = 0; i < eventosDisponiveis.size(); i++) {
+                Evento evento = eventosDisponiveis.get(i);
+                System.out.println((i + 1) + ". " + evento.getNome());
             }
 
-            System.out.print("Digite o número do evento: ");
+            System.out.print("Digite o número do evento (ou 0 para sair): ");
             int numeroEvento = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
-            Evento eventoEscolhido = getEvento(numeroEvento);
-            
+            if (numeroEvento == 0) {
+                System.out.println("Obrigado por usar o aplicativo. Até!");
+                break;
+            }
+
+            if (numeroEvento >= 1 && numeroEvento <= eventosDisponiveis.size()) {
+                Evento eventoEscolhido = eventosDisponiveis.get(numeroEvento - 1);
+
+                System.out.println("Nome do evento: " + eventoEscolhido.getNome());
+                System.out.println("Data do evento: " + eventoEscolhido.getData());
+                System.out.println("Local do evento: " + eventoEscolhido.getLocal());
+                System.out.println("Nome do artista/jogo: " + eventoEscolhido.getArtista());
+                System.out.println("Gênero musical/esporte: " + eventoEscolhido.getgeneroMusical());
+            } else {
+                System.out.println("Número de evento inválido. Tente novamente.");
+        
+            }
             System.out.print("Digite a quantidade de ingressos desejados" );
             int quantidadeIngressos = scanner.nextInt();
             // quantidade e valida
@@ -37,21 +60,9 @@ public class AplicativoIngresso {
                     System.out.println("Desculpe, não há ingressos disponíveis para a quantidade desejada.");
                 }
 
-            // Pergunte ao usuário se deseja continuar comprando
-            System.out.print("Deseja comprar mais ingressos? (S/N): ");
-            String continuar = scanner.next();
-
-            if (!continuar.equalsIgnoreCase("S")) {
-                System.out.println("Obrigado, volte sempre!");
-                break;
-            }
         }
 
-    }
         scanner.close();
     }
-
-    private static Evento getEvento(int numeroEvento) {
-        return null;
-    }
+}
 }
