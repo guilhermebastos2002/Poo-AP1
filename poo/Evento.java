@@ -1,4 +1,5 @@
 public abstract class Evento{
+    private static final String Ingresso = null;
     private String nome;
     private String data;
     private String local;
@@ -14,7 +15,10 @@ public abstract class Evento{
         this.ingressosMeia = ingressosMeia;
         this.precoCheio = precoCheio;
     }
-    
+
+    public Evento(String nome2, String data2, String local2, String ingressosInteira2, String ingressosMeia2,
+            String precoCheio2, String percentualDescontoTorcedor) {
+    }
 
     public String getNome() {
         return nome;
@@ -64,12 +68,32 @@ public abstract class Evento{
         this.precoCheio = precoCheio;
     }
 
-    public abstract boolean venderIngresso(TipoIngresso tipo, int quantidade);
-{
-
-    
-}
 public boolean isIngressoDisponivel(TipoIngresso inteira, int quantidadeIngressos) {
-    return false;
-}
+        return (ingressosInteira - ingressosMeia) >= quantidadeIngressos;
+    }
+
+    public boolean venderIngresso(TipoIngresso inteira, int quantidadeIngressos) {
+        if (isIngressoDisponivel(inteira, quantidadeIngressos)) {
+            ingressosMeia += quantidadeIngressos;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getIngresso() {
+        return Ingresso;
+    }
+
+    public String getArtista() {
+        return getArtista();
+    }
+
+    public String getgeneroMusical() {
+        return generoMusical();
+    }
+
+    private String generoMusical() {
+        return null;
+    }
 }
